@@ -27,6 +27,13 @@ dependencies:
   flutter_facebook_login: ^2.0.1
   flutter_bloc: ^0.20.0
   bloc: ^0.14.4
+  sqflite:
+  path_provider:
+  meta: ^1.1.6
+  equatable: ^0.2.0
+  local_auth: ^0.5.2+3
+  get_it: ^1.0.3+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
