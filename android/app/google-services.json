@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "628488781423",
+    "firebase_url": "https://e-paisa-07.firebaseio.com",
+    "project_id": "e-paisa-07",
+    "storage_bucket": "e-paisa-07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628488781423:android:176de7cefde5dd7238d79a",
+        "android_client_info": {
+          "package_name": "com.gdgnashik.facebook_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628488781423-gs8a3gi9ie54s46hkskhi8n1s9bauhjo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdgnashik.facebook_login",
+            "certificate_hash": "26286abff31542c1a0f321c889610837a89fb1b3"
+          }
+        },
+        {
+          "client_id": "628488781423-m02ffei4bunjmpcr9mo7edgj7a904v2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI-tdUNdMHJHyVl5TKWg2ikpuzS6V0YWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628488781423-m02ffei4bunjmpcr9mo7edgj7a904v2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

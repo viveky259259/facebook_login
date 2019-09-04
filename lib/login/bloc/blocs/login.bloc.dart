@@ -32,7 +32,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         UserModel userModel = await userRepository.doFacebookLogin();
         await userRepository.saveUserInfo(userModel);
         if (userModel != null)
-          yield LoginSuccessState(userModel);
+          yield UserLoggedInDataAvailableState();
         else
           yield LoginErrorState();
       } else if (event.loginType == LoginType.FINGERPRINT) {
