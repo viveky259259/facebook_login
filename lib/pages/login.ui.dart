@@ -2,6 +2,7 @@ import 'package:facebook_login/login/bloc/blocs/login.bloc.dart';
 import 'package:facebook_login/login/bloc/events/login.event.dart';
 import 'package:facebook_login/login/bloc/model/user.model.dart';
 import 'package:facebook_login/login/bloc/states/login.state.dart';
+import 'package:facebook_login/notification/firebase_notification.handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +16,8 @@ class _LoginUiState extends State<LoginUi> {
 
   @override
   Widget build(BuildContext context) {
+    new FirebaseNotifications().setUpFirebase(context);
+
     LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
 
     _loginBloc.dispatch(LoginOfflineCheckEvent());

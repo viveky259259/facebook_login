@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
 class NotificationUi extends StatelessWidget {
-  final Map<String, dynamic> message;
+  final String title;
+  final String body;
 
-  NotificationUi(this.message);
+  NotificationUi(this.title, this.body);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(message["title"]),
+          title: Text(title),
         ),
         body: Center(
-          child: Text(message["body"]),
+          child: Text(body),
         ));
   }
 }

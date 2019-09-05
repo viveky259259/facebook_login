@@ -41,8 +41,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    new FirebaseNotifications().setUpFirebase(context);
-
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(

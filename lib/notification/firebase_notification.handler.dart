@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:easy_alert/easy_alert.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+
+import 'notification.ui.dart';
 
 class FirebaseNotifications {
   FirebaseMessaging _firebaseMessaging;
@@ -25,18 +26,10 @@ class FirebaseNotifications {
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        print('on message $message');
-        Alert.alert(navigatorKey.currentContext,
-                title: "Hello", content: "this is a alert")
-            .then((_) => Alert.toast(context, "You just click ok"));
-
-        Alert.alert(context, title: "Hello", content: "this is a alertaaa")
-            .then((_) => Alert.toast(context, "You just click ok"));
-//        navigatorKey.currentState
-//            .push(MaterialPageRoute(builder: (c) => NotificationUi(message)));
-
-//        navigatorKey.currentState.push(
-//            MaterialPageRoute(builder: (context) => NotificationUi(message)));
+        String title = message["notification"]["title"];
+        String body = message["notification"]["body"];
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (c) => NotificationUi(title, body)));
       },
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');
