@@ -33,8 +33,11 @@ dependencies:
   equatable: ^0.2.0
   local_auth: ^0.5.2+3
   get_it: ^1.0.3+2
-  firebase_auth: ^0.8.1+1
-#  firebase_messaging: ^4.0.0+1
+  firebase_auth: ^0.14.0+5
+  google_maps_flutter: ^0.5.21
+  firebase_messaging: ^5.1.4
+  easy_alert: ^0.0.2
+
 
 dev_dependencies:
   flutter_test:
