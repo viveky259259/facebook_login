@@ -57,7 +57,7 @@ class _MapUiState extends State<MapUi> {
                   infoWindow: InfoWindow(title: "Your current location"),
                   position: state.currentLocation)
             ].toSet(),
-            polylines: [].toSet(),
+            polylines: state.polyLine.toSet(),
           );
         } else
           return SizedBox();

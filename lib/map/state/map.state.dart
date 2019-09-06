@@ -38,6 +38,12 @@ class LocationFetchedState extends MapState {
   String toString() {
     return "LocationFetched";
   }
+
+  factory LocationFetchedState.getClone(LocationFetchedState state) {
+    return LocationFetchedState(
+      currentLocation: state.currentLocation,
+    )..polyLine = state.polyLine;
+  }
 }
 
 class LocationErrorState extends MapState {
