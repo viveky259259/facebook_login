@@ -43,7 +43,17 @@ class _LoginUiState extends State<LoginUi> {
           return CircularProgressIndicator();
         else if (state is LoginSuccessState) {
           userModel = state.userModel;
-          return Text("User:${userModel.name}");
+          return Column(
+            children: <Widget>[
+              Text("User:${userModel.name}"),
+              RaisedButton(
+                onPressed: () {
+                  _loginBloc.dispatch(StartMapEvent(context));
+                },
+                child: Text("Open Map"),
+              )
+            ],
+          );
         } else
           return SizedBox();
       }),

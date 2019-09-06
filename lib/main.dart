@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:facebook_login/login/bloc/blocs/login.bloc.dart';
 import 'package:facebook_login/login/service/service_locator.dart';
+import 'package:facebook_login/map/bloc/map.bloc.dart';
 import 'package:facebook_login/notification/firebase_notification.handler.dart';
 import 'package:facebook_login/splash/splash.ui.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider<LoginBloc>(
           builder: (_) => LoginBloc(),
+        ),
+        BlocProvider<MapBloc>(
+          builder: (_) => MapBloc(),
         ),
       ],
       child: MaterialApp(

@@ -21,7 +21,7 @@ allprojects {
         resolutionStrategy.force "com.google.android.gms:play-services-base:16.0.1"
         resolutionStrategy.force "com.google.android.gms:play-services-basement:16.2.0"
         resolutionStrategy.force "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
-        
+        resolutionStrategy.force "com.google.firebase:firebase-messaging:18.0.0"
     }    
 }
 
