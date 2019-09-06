@@ -18,8 +18,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       LatLng currentLocation = await mapRepository.fetchCurrentLocation();
       yield LocationFetchedState(currentLocation: currentLocation);
     }
-    if(event is DrawRouteEvent){
-      LocationFetchedState locationFetchedState=  LocationFetchedState.instance;
+    if (event is DrawRouteEvent) {
+      LocationFetchedState locationFetchedState = LocationFetchedState.instance;
 //      locationFetchedState.polyLine.add(Polyline
 //                                          (polylineId:locationFetchedState
 //                                            .polyLine.length.toString() ));
