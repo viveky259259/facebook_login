@@ -44,9 +44,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        //bloc for login module
         BlocProvider<LoginBloc>(
           builder: (_) => LoginBloc(),
         ),
+        //bloc for map module
         BlocProvider<MapBloc>(
           builder: (_) => MapBloc(),
         ),
@@ -54,6 +56,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          // change primary color of app
           primarySwatch: Colors.indigo,
         ),
         navigatorKey: locator<FirebaseNotifications>().navigatorKey,

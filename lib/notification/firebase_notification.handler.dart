@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FirebaseNotifications {
   FirebaseMessaging _firebaseMessaging;
@@ -27,7 +27,15 @@ class FirebaseNotifications {
       onMessage: (Map<String, dynamic> message) async {
         String title = message["notification"]["title"];
         String body = message["notification"]["body"];
-        Toast.show(title, context, gravity: Toast.TOP);
+        //show toast
+        Fluttertoast.showToast(
+            msg: "Notification: $title",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 1,
+            backgroundColor: Colors.blue.shade900,
+            textColor: Colors.white,
+            fontSize: 16.0);
       },
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');
@@ -38,6 +46,7 @@ class FirebaseNotifications {
     );
   }
 
+  //ask for ios permission to show notifications
   void iOS_Permission() {
     _firebaseMessaging.requestNotificationPermissions(
         IosNotificationSettings(sound: true, badge: true, alert: true));

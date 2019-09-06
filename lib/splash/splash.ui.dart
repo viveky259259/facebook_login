@@ -16,6 +16,9 @@ class _SplashUiState extends State<SplashUi> {
     });
   }
 
+  /*
+      Open login screen after 1.5 seconds
+   */
   void goToLogin() async {
     await Future.delayed(Duration(seconds: 1, milliseconds: 500));
     Navigator.pushReplacement(
@@ -25,10 +28,11 @@ class _SplashUiState extends State<SplashUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade200,
       body: Center(
         child: Text(
           "E paisa Challenge",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20,color: Colors.blue.shade900),
         ),
       ),
     );
