@@ -28,10 +28,17 @@ class LocationLoadingState extends MapState {
 class LocationFetchedState extends MapState {
   final LatLng currentLocation;
   List<Polyline> polyLine = List();
+  List<Marker> markers = List();
   static LocationFetchedState instance;
 
   LocationFetchedState({@required this.currentLocation}) {
     instance = this;
+    markers.addAll([
+      Marker(
+          markerId: MarkerId(currentLocation.hashCode.toString()),
+          infoWindow: InfoWindow(title: currentLocation.hashCode.toString()),
+          position: currentLocation)
+    ]);
   }
 
   @override
@@ -42,7 +49,9 @@ class LocationFetchedState extends MapState {
   factory LocationFetchedState.getClone(LocationFetchedState state) {
     return LocationFetchedState(
       currentLocation: state.currentLocation,
-    )..polyLine = state.polyLine;
+    )
+      ..polyLine = state.polyLine
+      ..markers = state.markers;
   }
 }
 

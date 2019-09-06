@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:facebook_login/login/bloc/events/login.event.dart';
-import 'package:facebook_login/login/bloc/model/user.model.dart';
-import 'package:facebook_login/login/bloc/repository/user.repository.dart';
-import 'package:facebook_login/login/bloc/states/login.state.dart';
+import 'package:facebook_login/login/events/login.event.dart';
+import 'package:facebook_login/login/models/user.model.dart';
+import 'package:facebook_login/login/repository/user.repository.dart';
 import 'package:facebook_login/login/service/local_authentication.service.dart';
 import 'package:facebook_login/login/service/service_locator.dart';
+import 'package:facebook_login/login/states/login.state.dart';
 import 'package:facebook_login/map/pages/map.ui.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (userModel != null)
           yield UserLoggedInDataAvailableState();
         else
-          yield LoginErrorState();
+          yield LoginFacebookErrorState();
       } else if (event.loginType == LoginType.FINGERPRINT) {
         yield LoginLoadingState();
 
@@ -41,13 +41,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             locator<LocalAuthenticationService>();
 
         bool isAuthenticated = await _localAuth.authenticate();
+        print(isAuthenticated);
         if (isAuthenticated) {
           UserModel userModel = await userRepository.getLoggedInUser();
           yield LoginSuccessState(userModel);
+        } else {
+          yield LoginFingerPrintErrorState();
         }
       }
     } else if (event is StartMapEvent) {
-      Navigator.push(event.context, MaterialPageRoute(builder: (_) => MapUi()));
+      Navigator.push(event.context,
+          MaterialPageRoute(builder: (_) => MapUi(event.userModel)));
     }
   }
 }

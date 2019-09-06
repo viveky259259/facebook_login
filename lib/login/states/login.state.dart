@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:facebook_login/login/bloc/model/user.model.dart';
+import 'package:facebook_login/login/models/user.model.dart';
 
 enum LoadingState { none, loading, error }
 
@@ -15,13 +15,22 @@ class LoginLoadingState extends LoginState {
   String toString() => 'LoginLoading';
 }
 
-class LoginErrorState extends LoginState {
+class LoginFacebookErrorState extends LoginState {
   String error;
 
-  LoginErrorState([this.error]);
+  LoginFacebookErrorState([this.error]);
 
   @override
-  String toString() => 'LoginError';
+  String toString() => 'LoginFbError';
+}
+
+class LoginFingerPrintErrorState extends LoginState {
+  String error;
+
+  LoginFingerPrintErrorState([this.error]);
+
+  @override
+  String toString() => 'LoginFpError';
 }
 
 class LoginSuccessState extends LoginState {

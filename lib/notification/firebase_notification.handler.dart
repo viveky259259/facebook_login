@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-
-import 'notification.ui.dart';
+import 'package:toast/toast.dart';
 
 class FirebaseNotifications {
   FirebaseMessaging _firebaseMessaging;
@@ -28,8 +27,7 @@ class FirebaseNotifications {
       onMessage: (Map<String, dynamic> message) async {
         String title = message["notification"]["title"];
         String body = message["notification"]["body"];
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (c) => NotificationUi(title, body)));
+        Toast.show(title, context, gravity: Toast.TOP);
       },
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');

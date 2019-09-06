@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:facebook_login/login/bloc/model/user.model.dart';
+import 'package:facebook_login/login/models/user.model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

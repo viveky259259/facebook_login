@@ -1,4 +1,4 @@
-import 'package:facebook_login/pages/login.ui.dart';
+import 'package:facebook_login/login/pages/login.ui.dart';
 import 'package:flutter/material.dart';
 
 class SplashUi extends StatefulWidget {

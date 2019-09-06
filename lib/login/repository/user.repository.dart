@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:facebook_login/login/bloc/database/login.db.dart';
-import 'package:facebook_login/login/bloc/events/login.event.dart';
-import 'package:facebook_login/login/bloc/model/user.model.dart';
+import 'package:facebook_login/login/database/login.db.dart';
+import 'package:facebook_login/login/events/login.event.dart';
+import 'package:facebook_login/login/models/user.model.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +31,6 @@ class UserRepository {
         break;
       case FacebookLoginStatus.cancelledByUser:
         print("CancelledByUser");
-//        onLoginStatusChanged(false, null);
         break;
       case FacebookLoginStatus.loggedIn:
         print("LoggedIn");
@@ -61,7 +60,6 @@ class UserRepository {
 
   Future<UserModel> getLoggedInUser() async {
     return await database.getLoggedInUser();
-
   }
 
   Future<bool> saveUserInfo(UserModel userModel) async {

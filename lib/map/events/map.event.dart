@@ -18,3 +18,13 @@ class DrawRouteEvent extends MapEvent {
   @override
   String toString() => 'DrawRoute';
 }
+
+class OpenRoute extends MapEvent {
+  final LatLng originLatLng;
+  final LatLng destinationLatLng;
+
+  OpenRoute(this.originLatLng, this.destinationLatLng);
+
+  @override
+  String toString() => 'OpenRoute';
+}

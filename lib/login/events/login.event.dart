@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:facebook_login/login/models/user.model.dart';
 import 'package:flutter/cupertino.dart';
 
 enum LoginType { FACEBOOK, FINGERPRINT }
@@ -23,8 +24,9 @@ class LoggedInEvent extends LoginEvent {
 
 class StartMapEvent extends LoginEvent {
   final BuildContext context;
+  final UserModel userModel;
 
-  StartMapEvent(this.context);
+  StartMapEvent(this.context, this.userModel);
 
   @override
   String toString() => 'StartMapEvent';
@@ -35,9 +37,14 @@ class LoggedOutEvent extends LoginEvent {
   String toString() => 'LoggedOut';
 }
 
-class LoginErrorEvent extends LoginEvent {
+class LoginFacebookErrorEvent extends LoginEvent {
   @override
-  String toString() => 'LoginError';
+  String toString() => 'LoginFbError';
+}
+
+class LoginFingerPrintErrorEvent extends LoginEvent {
+  @override
+  String toString() => 'LoginFPError';
 }
 
 class LoginOfflineCheckEvent extends LoginEvent {
