@@ -4,6 +4,7 @@ class UserModel {
   String name;
   String email;
 
+  //name and email should be mandatory
   UserModel({@required this.name, @required this.email});
 
   UserModel.empty() {

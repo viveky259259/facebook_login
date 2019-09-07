@@ -5,12 +5,14 @@ abstract class MapEvent extends Equatable {
   MapEvent([List props = const []]) : super(props);
 }
 
+//fetch location event
 class FetchLocationEvent extends MapEvent {
   @override
   String toString() => 'FetchLocation';
 }
 
 class DrawRouteEvent extends MapEvent {
+  // get target latlng to draw line from current location
   final LatLng targetLatLng;
 
   DrawRouteEvent(this.targetLatLng);
@@ -19,6 +21,7 @@ class DrawRouteEvent extends MapEvent {
   String toString() => 'DrawRoute';
 }
 
+//show route in map
 class OpenRoute extends MapEvent {
   final LatLng originLatLng;
   final LatLng destinationLatLng;

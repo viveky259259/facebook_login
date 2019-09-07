@@ -11,7 +11,9 @@ class _SplashUiState extends State<SplashUi> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((callback) {
+      //act once ui is loaded
       goToLogin();
     });
   }
@@ -32,7 +34,7 @@ class _SplashUiState extends State<SplashUi> {
       body: Center(
         child: Text(
           "E paisa Challenge",
-          style: TextStyle(fontSize: 20,color: Colors.blue.shade900),
+          style: TextStyle(fontSize: 20, color: Colors.blue.shade900),
         ),
       ),
     );

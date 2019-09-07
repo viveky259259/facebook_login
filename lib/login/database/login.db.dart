@@ -31,6 +31,7 @@ class LoginDatabase {
   }
 
   initiateLoginTable(Database db) async {
+    //create table of user
     await db.execute("CREATE TABLE $loginTableName ("
         "name TEXT,"
         "email TEXT"
@@ -38,6 +39,7 @@ class LoginDatabase {
   }
 
   Future<int> insertUser(UserModel userModel) async {
+    //insert new user data
     final db = await database;
     var raw = await db.insert(
       loginTableName,
@@ -49,6 +51,7 @@ class LoginDatabase {
   }
 
   Future<UserModel> getLoggedInUser() async {
+    //get logged in user data
     final db = await database;
     var response = await db.query(loginTableName);
     if (response != null && response.length > 0)

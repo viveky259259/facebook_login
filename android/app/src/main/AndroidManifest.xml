@@ -11,7 +11,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="facebook_login"
+        android:label="E-paisa Challenge"
         android:icon="@mipmap/ic_launcher">
         
 <!--        Facebook Login -->

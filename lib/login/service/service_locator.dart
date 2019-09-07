@@ -6,5 +6,4 @@ GetIt locator = GetIt();
 
 void setupLocator() {
   locator.registerLazySingleton(() => LocalAuthenticationService());
-  locator.registerLazySingleton(() => FirebaseNotifications());
 }

@@ -7,13 +7,13 @@ import 'package:facebook_login/map/repository/map.repository.dart';
 import 'package:facebook_login/map/states/map.state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
   final MapRepository mapRepository;
 
   MapBloc() : mapRepository = MapRepository();
 
+  //start with uninitialized state
   @override
   MapState get initialState => LocationUnInitializedState();
 
@@ -31,6 +31,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           width: 4,
           color: Colors.indigo.shade900,
           zIndex: 3,
+          //start,end line shape
           endCap: Cap.roundCap,
           startCap: Cap.roundCap,
           patterns: [
@@ -48,41 +49,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
             })
       ]);
 
-//      locationFetchedState.addMarker(locationFetchedState.currentLocation);
+      //show loading till you feed new data
+
       yield LocationLoadingState();
       yield LocationFetchedState.getClone(locationFetchedState);
     } else if (event is OpenRoute) {
-      showRoute(event.originLatLng, event.destinationLatLng);
-    }
-  }
-
-  showRoute(LatLng originLatLng, LatLng destinationLatLng) async {
-    String origin =
-        "${originLatLng.latitude},${originLatLng.longitude}"; // lat,long like 123.34,68.56
-    String destination =
-        "${destinationLatLng.latitude},${destinationLatLng.longitude}";
-    if (Platform.isAndroid) {
-      final AndroidIntent intent = new AndroidIntent(
-          action: 'action_view',
-          data: Uri.encodeFull(
-              "https://www.google.com/maps/dir/?api=1&origin=" +
-                  origin +
-                  "&destination=" +
-                  destination +
-                  "&travelmode=driving&dir_action=navigate"),
-          package: 'com.google.android.apps.maps');
-      intent.launch();
-    } else {
-      String url = "https://www.google.com/maps/dir/?api=1&origin=" +
-          origin +
-          "&destination=" +
-          destination +
-          "&travelmode=driving&dir_action=navigate";
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      mapRepository.showRoute(event.originLatLng, event.destinationLatLng);
     }
   }
 }

@@ -6,14 +6,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class FirebaseNotifications {
   FirebaseMessaging _firebaseMessaging;
-  BuildContext context;
-  final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
 
-  void setUpFirebase(BuildContext context) {
+  void setUpFirebase() {
     _firebaseMessaging = FirebaseMessaging();
     firebaseCloudMessaging_Listeners();
-    this.context = context;
+
   }
 
   void firebaseCloudMessaging_Listeners() {
@@ -27,7 +24,7 @@ class FirebaseNotifications {
       onMessage: (Map<String, dynamic> message) async {
         String title = message["notification"]["title"];
         String body = message["notification"]["body"];
-        //show toast
+        //show title in toast on top
         Fluttertoast.showToast(
             msg: "Notification: $title",
             toastLength: Toast.LENGTH_LONG,

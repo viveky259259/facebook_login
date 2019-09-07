@@ -28,15 +28,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else if (event is LoginInitEvent) {
       if (event.loginType == LoginType.FACEBOOK) {
         yield LoginLoadingState();
+
+        // initiate fingerprint login
         UserModel userModel = await userRepository.doFacebookLogin();
         await userRepository.saveUserInfo(userModel);
         if (userModel != null)
           yield UserLoggedInDataAvailableState();
         else
+          //if user is null then return error state
           yield LoginFacebookErrorState();
       } else if (event.loginType == LoginType.FINGERPRINT) {
         yield LoginLoadingState();
 
+        // initiate fingerprint login
         final LocalAuthenticationService _localAuth =
             locator<LocalAuthenticationService>();
 
@@ -46,6 +50,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           UserModel userModel = await userRepository.getLoggedInUser();
           yield LoginSuccessState(userModel);
         } else {
+          //if user is null then return error state
           yield LoginFingerPrintErrorState();
         }
       }

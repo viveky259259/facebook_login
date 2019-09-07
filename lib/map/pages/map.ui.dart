@@ -17,10 +17,12 @@ class MapUi extends StatefulWidget {
 
 class _MapUiState extends State<MapUi> {
   startLocating(MapBloc mapBloc) {
+    // start location service from here
     mapBloc?.dispatch(FetchLocationEvent());
   }
 
   drawPolyLine(MapBloc mapBloc, LatLng targetLocation) {
+    //draw line on map to user's tapped location
     mapBloc?.dispatch(DrawRouteEvent(targetLocation));
   }
 
@@ -51,10 +53,31 @@ class _MapUiState extends State<MapUi> {
               ],
             );
           } else if (state is LocationEmptyState) {
-            return Text("Can't Set Current Location");
+            //when you don't get location
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "Can't Set Current Location",
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue.shade900,
+                    letterSpacing: 1.5),
+              ),
+            );
           } else if (state is LocationEmptyState) {
-            return Text("Something went wrong");
+            //when you get some error in locating user
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "Something went wrong",
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue.shade900,
+                    letterSpacing: 1.5),
+              ),
+            );
           } else if (state is LocationLoadingState) {
+            //show loader till app gets user's location
             return Center(
               child: CircularProgressIndicator(),
             );
@@ -63,7 +86,12 @@ class _MapUiState extends State<MapUi> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text("Tap anywhere on screen to draw line",
+                  child: Text(
+                      // if there is no polyline then ask user to select a location
+                      //if there is polyline then ask user to tap on marker to get route between current location and marker
+                      state.polyLine.length == 0
+                          ? "Tap anywhere on screen to draw line"
+                          : "Tap on any marker to get route",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.blue.shade900,
@@ -89,6 +117,7 @@ class _MapUiState extends State<MapUi> {
               ],
             );
           } else
+            //when there is unidentified state then return a blank screen
             return SizedBox();
         }),
       ),

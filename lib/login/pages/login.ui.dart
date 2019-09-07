@@ -16,7 +16,7 @@ class _LoginUiState extends State<LoginUi> {
 
   @override
   Widget build(BuildContext context) {
-    new FirebaseNotifications().setUpFirebase(context);
+    new FirebaseNotifications().setUpFirebase();
 
     LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
 
@@ -27,6 +27,7 @@ class _LoginUiState extends State<LoginUi> {
         child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
           print(state);
           if (state is UserLoggedInDataAvailableState)
+            //ask user to login with fingerprint
             return RaisedButton(
               color: Colors.blue.shade900,
               onPressed: () {
@@ -69,6 +70,7 @@ class _LoginUiState extends State<LoginUi> {
             );
           else if (state is UserLoggedInDataUnAvailableState ||
               state is LoginUnInitializedState)
+            //ask user to login with facebook
             return RaisedButton(
               color: Colors.blue.shade900,
               onPressed: () {
@@ -108,6 +110,7 @@ class _LoginUiState extends State<LoginUi> {
               ),
             );
           else if (state is LoginFacebookErrorState)
+            //ask user to try again with facebook
             return RaisedButton(
               color: Colors.blue.shade900,
               onPressed: () {
@@ -147,8 +150,10 @@ class _LoginUiState extends State<LoginUi> {
               ),
             );
           else if (state is LoginLoadingState)
+            //show loading state till any update on state
             return CircularProgressIndicator();
           else if (state is LoginFingerPrintErrorState)
+            //ask user to try again with fingerprint
             return RaisedButton(
               color: Colors.blue.shade900,
               onPressed: () {
@@ -190,6 +195,7 @@ class _LoginUiState extends State<LoginUi> {
               ),
             );
           else if (state is LoginSuccessState)
+            //ask user to open maps on successful login
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
