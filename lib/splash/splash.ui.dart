@@ -32,9 +32,18 @@ class _SplashUiState extends State<SplashUi> {
     return Scaffold(
       backgroundColor: Colors.blue.shade200,
       body: Center(
-        child: Text(
-          "E paisa Challenge",
-          style: TextStyle(fontSize: 20, color: Colors.blue.shade900),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Image.asset("assets/icons/image001.png",height: 48,width: 48,),
+            SizedBox(
+              width: 16,
+            ),
+            Text(
+              "E paisa Challenge",
+              style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.blue.shade900),
+            ),
+          ],
         ),
       ),
     );
